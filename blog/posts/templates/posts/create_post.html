@@ -3,16 +3,17 @@
 {% block content %}
 <div class="okno">
   <div class="create-posts">
-    <form class="create-post" action="index.html" method="post">
+    <form class="create-post" action="{% url 'posts:create' %}" method="post">
+      {% csrf_token %}
       <div class="form-input">
-        <label for="">Заголовок</label>
-        <input type="text" name="" value="" class="form-title">
+        <label for="title_name">Заголовок</label>
+        <input type="text" name="title_name"  class="form-title">
       </div>
       <div class="form-input">
-        <textarea name="name" rows="15" cols="80" style="border: 1px solid black;">
+        <label for="description">Текс</label>
+        <textarea name="description" rows="15" cols="80" style="border: 1px solid black;">
         </textarea>
       </div>
-
       <button type="submit" class="button" name="button">Сохранить</button>
     </form>
 

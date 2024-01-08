@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('users/', include('users.urls', namespace='users')),
+    path('posts/', include('posts.urls', namespace='posts')),
 ]
 
 if settings.DEBUG:

@@ -23,7 +23,7 @@
 
             {% if user.is_authenticated %}
             <a href="posts_user.html">Мои посты</a>
-            <a href="create_post.html">
+            <a href="{% url 'posts:create' %}">
               <img src="{% static 'img/icons/blog.png' %}" alt="Написать пост"  width="30" height="30">
             </a>
             <div class="portfile">
