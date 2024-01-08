@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from common.views import TitleMixin
+from django.contrib.auth.views import TemplateView
+
+class HomeView(TitleMixin, TemplateView):
+    title = 'Блог'
+    template_name = 'posts/index.html'
