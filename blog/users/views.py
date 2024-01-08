@@ -1,14 +1,12 @@
-from django.shortcuts import render
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-
-from common.views import TitleMixin
-from users.models import User
 
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import UpdateView, CreateView
 
 from users.forms import UserLoginForm, UserProfileForm, UserRegisterForm
+from common.views import TitleMixin
+from users.models import User
 
 
 class UserLoginView(TitleMixin, LoginView):

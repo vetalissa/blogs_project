@@ -4,7 +4,18 @@
 <div class="okno">
   <div class="forma-login">
     <h2>Регистрация</h2>
-
+    {% if messages or form.non_field_errors %}
+    <div class="errors">
+      <h3>Ошибка:</h3>
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% else %}
+        <p>{{ form.non_field_errors }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
     <form class="" action="{% url 'users:register' %}" method="post">
       {% csrf_token %}
       <div class="form-input">
