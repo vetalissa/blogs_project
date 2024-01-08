@@ -221,3 +221,70 @@ p{
 .none-border{
   border-bottom: none;
 }
+.forma-login{
+  display: flex;
+  margin: 0 auto;
+  margin-top: 35px;
+  padding: 30px;
+  width: 552px;
+  border: 1px solid rgba(0,0,0,.125);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.form-input{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.form-title{
+  padding: 6px 12px;
+  width: 445px;
+  height: 40px;
+  background: none;
+  border: 1px solid rgb(0 0 0 / 29%);
+}
+
+
+.profile{
+  display: flex;
+  margin: 0 auto;
+  margin-top: 35px;
+  padding: 30px;
+  width: 552px;
+  border: 1px solid rgba(0,0,0,.125);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+
+
+.profile-img{
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-img img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
+.prof-img-small{
+  width: 50px;
+  height: 50px;
+}
+
+.prof-img-big{
+  width: 200px;
+  height: 200px;
+}
+
+.prof-img-sr{
+  width: 100px;
+  height: 100px;
+}

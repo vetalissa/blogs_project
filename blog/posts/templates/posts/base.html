@@ -20,20 +20,25 @@
 
           <div class="menu">
             <a href="all_blogs.html"> Все посты </a>
-            <a href="login.html"> Войти </a>
-            <a href="posts_user.html">Мои посты</a>
 
+            {% if user.is_authenticated %}
+            <a href="posts_user.html">Мои посты</a>
             <a href="create_post.html">
-              <img src="{% static 'img/icons/blog.png' %}" alt="Написать статью"  width="30" height="30">
+              <img src="{% static 'img/icons/blog.png' %}" alt="Написать пост"  width="30" height="30">
             </a>
             <div class="portfile">
               <img src="{% static 'img/icons/user.png' %}" width="30" height="30" alt="Профиль">
               <ul class='menu-portfile'>
-                <li> <a href="profile.html">Профиль</a></li>
-                <li><a href="#"> Админ-панель </a></li>
-                <li><a href="#"> Выйти </a></li>
+                <li> <a href="{% url 'users:profile' user.id %}">Профиль</a></li>
+                {% if user.is_superuser or user.is_staff %}
+                <li><a href="{% url 'admin:index' %}"> Админ-панель </a></li>
+                {% endif %}
+                <li><a href="{% url 'users:logout' %}"> Выйти </a></li>
               </ul>
             </div>
+            {% else %}
+            <a href="{% url 'users:login' %}"> Войти </a>
+            {% endif %}
           </div>
         </div>
       </div>

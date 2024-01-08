@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+from users.models import User
+
+class Post(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    date_create = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)

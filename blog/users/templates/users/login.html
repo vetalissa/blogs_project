@@ -2,24 +2,23 @@
 
 {% block content %}
  <div class="okno">
-        <div class="forma-login">
-          <h2>Авторизация</h2>
-          <form class="" action="index.html" method="post">
+     <div class="forma-login">
+         <h2>Авторизация</h2>
+         <form class="" action="{% url 'users:login' %}" method="post">
+             {% csrf_token %}
+             <div class="form-input">
+                 <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                 {{ form.username }}
+             </div>
             <div class="form-input">
-              <label for="">Имя пользователя</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Пароль</label>
-              <input type="password" name="" value="" class="form-title">
+                <label for="{{ form.password.id_for_label }}">Пароль</label>
+                {{ form.password }}
             </div>
             <button type="submit" name="button" class="button">Войти</button>
-
-
-          </form>
-
-          <p>Нет аккаунта?
-          <a href="register.html"> Регистрация </a></p>
-        </div>
-      </div>
+         </form>
+         <p>Нет аккаунта?
+             <a href="{% url 'users:register' %}"> Регистрация </a>
+         </p>
+    </div>
+ </div>
 {% endblock %}

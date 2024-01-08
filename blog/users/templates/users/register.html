@@ -2,44 +2,41 @@
 
 {% block content %}
 <div class="okno">
-        <div class="forma-login">
-          <h2>Регистрация</h2>
+  <div class="forma-login">
+    <h2>Регистрация</h2>
 
-          <form class="" action="index.html" method="post">
-            <div class="form-input">
-              <label for="">Имя</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Фамилия</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Имя пользователя</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Почта</label>
-              <input type="email" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Пароль</label>
-              <input type="password" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Подтверждение пароля</label>
-              <input type="password" name="" value="" class="form-title">
-            </div>
-            <button type="submit" name="button" class="button">Регистрация</button>
-
-
-          </form>
-
-
-
-          <p>Есть аккаунта?
-          <a href="register.html"> Вход </a></p>
-        </div>
+    <form class="" action="{% url 'users:register' %}" method="post">
+      {% csrf_token %}
+      <div class="form-input">
+        <label for="{{ form.first_name.id_for_label }}">Имя</label>
+        {{ form.first_name }}
       </div>
-{% endblock %}
+      <div class="form-input">
+        <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+        {{ form.last_name }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+        {{ form.username }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.email.id_for_label }}">Почта</label>
+        {{ form.email }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.password1.id_for_label }}">Пароль</label>
+        {{ form.password1 }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+        {{ form.password2 }}
+      </div>
+      <button type="submit" name="button" class="button">Регистрация</button>
+    </form>
 
+    <p>Есть аккаунта?
+    <a href="{% url 'users:login' %}"> Вход </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

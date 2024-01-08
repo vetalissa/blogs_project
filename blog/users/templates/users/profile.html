@@ -1,39 +1,36 @@
 {% extends 'posts/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="okno">
-        <div class="profile">
-          <form class="" action="index.html" method="post">
-            <div class="profile-img">
-              <img src="static/img/user.png" width="200" alt="">
-              <div class="form-input">
-                <label for="">Изображение</label>
-                <input type="file" name="" value="" class="form-title">
-              </div>
-            </div>
-
-            <div class="form-input">
-              <label for="">Имя</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Фамилия</label>
-              <input type="text" name="" value="" class="form-title">
-            </div>
-            <div class="form-input">
-              <label for="">Имя пользователя</label>
-              <input type="text" name="" value="" class="form-title" disabled>
-            </div>
-            <div class="form-input">
-              <label for="">Почта</label>
-              <input type="email" name="" value="" class="form-title" disabled>
-            </div>
-            <button type="submit" name="button" class="button">Сохранить</button>
-
-
-
-        </div>
-
+  <div class="profile">
+    <div class="profile-img prof-img-big">
+        <img src="{% if user.image %}{{ user.image.url }}
+        {% else %}{% static 'img/user.png' %}{% endif %}" width="200" alt="">
       </div>
+    <form class="" action="{% url 'users:profile' user.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-input">
+          <label for="{{ form.image.id_for_label }}">Изображение</label>
+          {{ form.image }}
+        </div>
+      <div class="form-input">
+        <label for="{{ form.first_name.id_for_label }}">Имя</label>
+        {{ form.first_name }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+        {{ form.last_name }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+        {{ form.username }}
+      </div>
+      <div class="form-input">
+        <label for="{{ form.email.id_for_label }}">Почта</label>
+        {{ form.email }}
+      </div>
+      <button type="submit" name="button" class="button">Сохранить</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
-
