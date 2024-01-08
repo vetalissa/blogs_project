@@ -1,0 +1,223 @@
+body{
+  margin: 0;
+  font-weight: 400;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+h1{
+  color: black;
+  font-size: 30px;
+  font-family: serif;
+}
+
+h2{
+  font-size: 30px;
+  font-weight: 600;
+  font-family: serif;
+}
+
+h3{
+  font-size: 25px;
+  font-weight: 400;
+}
+
+h4{
+  color: #4f4f4fbd;
+  font-size: 13px;
+}
+
+a{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+p{
+  font-size: 16px;
+}
+
+.okno{
+  width: 80%;
+  height: 60%;
+  margin: 0 auto;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  background: #c4c2c4;
+  height: 60px;
+  width: 100%;
+}
+
+.header-menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.menu{
+  display: flex;
+  align-items: center;
+}
+
+.menu a{
+  color: black;
+  margin: 0px 10px;
+}
+
+
+.portfile{
+  position: relative;
+  display: inline-block;
+}
+
+.menu-portfile{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.menu-portfile li{
+  color: black;
+  padding: 10px 10px;
+  display: block;
+}
+
+.portfile:hover .menu-portfile{
+  display: block;
+}
+
+.home-page{
+  min-height: 635px;
+  background-image: url('../img/fon.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home{
+  display: flex;
+  flex-direction: column;
+  padding: 90px 0px 50px;
+}
+
+.home-content{
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  margin: 0px 0px 50px 0px;
+}
+
+.home-content h2{
+  margin: 20px 0px;
+}
+
+.home-content a{
+  margin: 20px 0px;
+}
+
+.button{
+  padding: 15px;
+  background: #222222;
+  color: #fff;
+  width: max-content;
+}
+
+.center-text{
+  text-align: center;
+  margin: 20px;
+}
+
+.last-post{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.card{
+  max-width: 364px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffffc4;;
+  padding: 15px;
+}
+
+.card h4{
+  margin: 5px 0px;
+}
+
+.all-posts{
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card{
+  margin: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+}
+
+.post-card h4, h3{
+  margin: 10px 0px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  margin: 0px 0px 45px 0px;
+}
+
+.pagination ul{
+  display: flex;
+
+}
+
+.pagination li{
+  color: black;
+  padding: 10px;
+  border: 1px solid #00000021;
+}
+
+.post-button{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tp{
+  margin: 100px;
+}
+
+.end{
+  text-align: end;
+}
+
+.cards-comment{
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0px;
+}
+
+.card-comment{
+    border: 1px solid #00000021;
+    padding: 20px;
+}
+.user-card{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0px 0px 10px 0px;
+}
+
+.card-comment p{
+  margin: 20px 0px 0px 0px;
+}
+
+.none-border{
+  border-bottom: none;
+}

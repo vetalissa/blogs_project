@@ -1,0 +1,23 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+<div class="okno">
+        <div class="create-posts">
+          <form class="create-post" action="index.html" method="post">
+            <div class="form-input">
+              <label for="">Заголовок</label>
+              <input type="text" name="" value="" class="form-title">
+            </div>
+            <div class="form-input">
+              <textarea name="name" rows="15" cols="80" style="border: 1px solid black;">
+              </textarea>
+            </div>
+
+            <button type="submit" class="button" name="button">Сохранить</button>
+            <a href="#" class="button " >Удалить пост</a>
+          </form>
+
+        </div>
+
+      </div>
+{% endblock %}

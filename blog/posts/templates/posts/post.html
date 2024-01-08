@@ -1,0 +1,72 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+ <div class="okno">
+    <div class="post-card none-border">
+      <a href="post.html"><h2>Заголовок</h2></a>
+      <div class="post-button">
+        <a href="update_post.html" class="button"> Изменить </a>
+      </div>
+
+      <a href="#">username</a>
+      <h4>20.11.2001</h4>
+      <p>немножко текста что бы было понятно о чем речь. как то
+      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
+      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
+      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
+      вот так вот и сюда чучуть напишу</p>
+
+    </div>
+
+    <div class="comment">
+      <h2>Оставить Комментарий</h2>
+      <form class="" action="index.html" method="post">
+        <div class="form-input" style="display: flex;flex-direction: column;">
+          <textarea name="comment" rows="5" cols="100" style="border: 1px solid black;">
+          </textarea>
+          <button type="submit" name="button" class="button" >Отправить</button>
+        </div>
+      </form>
+
+      <div class="cards-comment">
+        <div class="card-comment">
+          <div class="user-card">
+            <img src="static/img/user.png" width="30" height="30" alt="">
+            <h3>Username</h3>
+          </div>
+          <h4>20.11.01</h4>
+          <p>Произвольный высер какого то чела который нахуй никому не нужен))</p>
+        </div>
+        <div class="card-comment">
+          <div class="user-card">
+            <img src="static/img/user.png" width="30" height="30" alt="">
+            <h3>Username</h3>
+          </div>
+          <h4>20.11.01</h4>
+          <p>Произвольный высер какого то чела который нахуй никому не нужен))</p>
+        </div>
+        <div class="card-comment">
+          <div class="user-card">
+            <img src="static/img/user.png" width="30" height="30" alt="">
+            <h3>Username</h3>
+          </div>
+          <h4>20.11.01</h4>
+          <p>Произвольный высер какого то чела который нахуй никому не нужен))</p>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <ul>
+          <li><a href="#">Назад</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">Вперед</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
