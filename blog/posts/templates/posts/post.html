@@ -3,12 +3,20 @@
 {% block content %}
  <div class="okno">
     <div class="post-card none-border">
-      <a href="post.html"><h2>{{ object.title_name }}</h2></a>
-      <div class="post-button">
-        <a href="update_post.html" class="button"> Изменить </a>
+      {% if user.id is object.user.id %}
+      <div style="display: flex;justify-content: flex-end;">
+         <div class="post-button">
+           <a href="update_post.html" class="button" style="background: #4f8532;"> Изменить </a>
+         </div>
+         <div class="post-button">
+           <a href="update_post.html" class="button" style="background: #853232;"> Удалить </a>
+         </div>
       </div>
-
-      <a href="#">{{ object.user.username }}</a>
+      {% endif %}
+      <h2>{{ object.title_name }}</h2>
+      <a href="{% url 'posts:post_user' object.user.id %}" style="font-size: 20px;font-style: italic;margin: 10px;">
+        {{ object.user.username }}
+      </a>
       <h4>{{ object.date_create }}</h4>
       <p>{{ object.description|linebreaks }}</p>
 

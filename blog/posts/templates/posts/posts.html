@@ -2,14 +2,25 @@
 {% block content %}
  <div class="okno">
    <div class="all-posts">
-     <h1 class='center-text'>Все посты</h1>
+     <h1 class='center-text'>Все посты {{ tile_username }}</h1>
+
      {% for post in object_list %}
      <div class="post-card">
        <a href="{% url 'posts:post' post.id %}"><h2>{{ post.title_name }}</h2></a>
-       <h4>{{ post.user.username }}</h4>
+       <h4><a href="{% url 'posts:post_user' post.user.id %}">{{ post.user.username }}</a></h4>
        <h4>{{ post.date_create }}</h4>
        <p>{{ post.description|truncatechars:200 }}</p>
        <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
+       {% if user.id is post.user.id %}
+       <div style="display: flex;justify-content: flex-end;">
+         <div class="post-button">
+           <a href="update_post.html" class="button" style="background: #4f8532;"> Изменить </a>
+         </div>
+         <div class="post-button">
+           <a href="update_post.html" class="button" style="background: #853232;"> Удалить </a>
+         </div>
+       </div>
+       {% endif%}
      </div>
      {% endfor %}
      {% if is_paginated %}
