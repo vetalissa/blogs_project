@@ -300,3 +300,7 @@ p{
 .errors h3{
   font-size: 20px;
 }
+
+.disabled{
+    disabled: none;
+}

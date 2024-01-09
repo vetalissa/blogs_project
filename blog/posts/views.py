@@ -1,12 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth.views import TemplateView
 from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 from common.views import TitleMixin
-from django.contrib.auth.views import TemplateView
-from django.views.generic.edit import CreateView
-
-from posts.models import Post
 from posts.forms import PostCreateForm
+from posts.models import Post
 
 
 class HomeView(TitleMixin, TemplateView):
@@ -24,3 +23,12 @@ class PostCreateView(TitleMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PostCreateView, self).form_valid(form)
+
+
+class PostListView(TitleMixin, ListView):
+    model = Post
+    queryset = Post.objects.all()
+    title = 'Все посты'
+    template_name = 'posts/posts.html'
+    ordering = ('-date_create')
+    paginate_by = 3

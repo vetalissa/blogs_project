@@ -1,0 +1,39 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+ <div class="okno">
+   <div class="all-posts">
+     <h1 class='center-text'>Все посты</h1>
+     {% for post in object_list %}
+     <div class="post-card">
+       <a href="post.html"><h2>{{ post.title_name }}</h2></a>
+       <h4>{{ post.user.username }}</h4>
+       <h4>{{ post.date_create }}</h4>
+       <p>{{ post.description|truncatechars:200 }}</p>
+       <h3><a href="#">Читать дальше</a></h3>
+     </div>
+     {% endfor %}
+     {% if is_paginated %}
+     <div class="pagination">
+        <ul>
+          <li class="# {% if not page_obj.has_previous %} disabled {% endif %}">
+            <a href="{% if page_obj.has_previous %}
+                        ?page={{ page_obj.previous_page_number }}
+                     {% else %} # {% endif %}">Назад</a>
+          </li>
+          {% for page in paginate.page %}
+          <li>
+            <a href="?page={{ page }}">{{page}}</a>
+          </li>
+          {% endfor %}
+          <li class="# {% if not page_obj.has_next %} disabled {% endif%}">
+            <a href="{% if page_obj.has_next %}
+                        ?page={{ page_obj.next_page_number }}
+                     {% else %} # {% endif %}">Вперед</a>
+          </li>
+        </ul>
+     </div>
+     {% endif %}
+  </div>
+
+</div>
+{% endblock %}

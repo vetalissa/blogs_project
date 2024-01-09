@@ -1,11 +1,10 @@
 from django.contrib.auth import login
-from django.urls import reverse_lazy
-
 from django.contrib.auth.views import LoginView
-from django.views.generic.edit import UpdateView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
 
-from users.forms import UserLoginForm, UserProfileForm, UserRegisterForm
 from common.views import TitleMixin
+from users.forms import UserLoginForm, UserProfileForm, UserRegisterForm
 from users.models import User
 
 

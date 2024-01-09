@@ -19,7 +19,7 @@
           </a>
 
           <div class="menu">
-            <a href="all_blogs.html"> Все посты </a>
+            <a href="{% url 'posts:posts' %}"> Все посты </a>
 
             {% if user.is_authenticated %}
             <a href="posts_user.html">Мои посты</a>

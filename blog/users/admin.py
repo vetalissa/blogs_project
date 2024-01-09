@@ -1,6 +1,7 @@
 from django.contrib import admin
-from users.models import User
+
 from posts.admin import PostLineAdmin
+from users.models import User
 
 
 @admin.register(User)
