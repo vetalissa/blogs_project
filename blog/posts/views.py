@@ -20,7 +20,9 @@ class PostCreateView(TitleMixin, CreateView):
     form_class = PostCreateForm
     template_name = 'posts/create_post.html'
     title = 'Создать пост'
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy('posts:post_user', args=(self.object.user.id,))
 
     def form_valid(self, form):
         form.instance.user = self.request.user

@@ -26,17 +26,17 @@
      {% if is_paginated %}
      <div class="pagination">
         <ul>
-          <li class="# {% if not page_obj.has_previous %} disabled {% endif %}">
+          <li class="{% if not page_obj.has_previous %} disabled {% else %} # {% endif %}">
             <a href="{% if page_obj.has_previous %}
                         ?page={{ page_obj.previous_page_number }}
                      {% else %} # {% endif %}">Назад</a>
           </li>
-          {% for page in paginate.page %}
+          {% for page in paginator.page_range %}
           <li>
             <a href="?page={{ page }}">{{page}}</a>
           </li>
           {% endfor %}
-          <li class="# {% if not page_obj.has_next %} disabled {% endif%}">
+          <li class="{% if not page_obj.has_next %} disabled {% else %} # {% endif%}">
             <a href="{% if page_obj.has_next %}
                         ?page={{ page_obj.next_page_number }}
                      {% else %} # {% endif %}">Вперед</a>
