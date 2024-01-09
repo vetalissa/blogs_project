@@ -1,5 +1,6 @@
 from django.contrib.auth.views import TemplateView
 from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
@@ -32,3 +33,13 @@ class PostListView(TitleMixin, ListView):
     template_name = 'posts/posts.html'
     ordering = ('-date_create')
     paginate_by = 3
+
+
+class PostView(TitleMixin, DetailView):
+    model = Post
+    template_name = 'posts/post.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostView, self).get_context_data(**kwargs)
+        context['title'] = self.object.title_name
+        return context

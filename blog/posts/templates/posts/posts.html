@@ -5,11 +5,11 @@
      <h1 class='center-text'>Все посты</h1>
      {% for post in object_list %}
      <div class="post-card">
-       <a href="post.html"><h2>{{ post.title_name }}</h2></a>
+       <a href="{% url 'posts:post' post.id %}"><h2>{{ post.title_name }}</h2></a>
        <h4>{{ post.user.username }}</h4>
        <h4>{{ post.date_create }}</h4>
        <p>{{ post.description|truncatechars:200 }}</p>
-       <h3><a href="#">Читать дальше</a></h3>
+       <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
      </div>
      {% endfor %}
      {% if is_paginated %}

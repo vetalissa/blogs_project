@@ -3,18 +3,14 @@
 {% block content %}
  <div class="okno">
     <div class="post-card none-border">
-      <a href="post.html"><h2>Заголовок</h2></a>
+      <a href="post.html"><h2>{{ object.title_name }}</h2></a>
       <div class="post-button">
         <a href="update_post.html" class="button"> Изменить </a>
       </div>
 
-      <a href="#">username</a>
-      <h4>20.11.2001</h4>
-      <p>немножко текста что бы было понятно о чем речь. как то
-      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
-      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
-      вот так вот и сюда чучуть напишу.немножко текста что бы было понятно о чем речь. как то
-      вот так вот и сюда чучуть напишу</p>
+      <a href="#">{{ object.user.username }}</a>
+      <h4>{{ object.date_create }}</h4>
+      <p>{{ object.description|linebreaks }}</p>
 
     </div>
 
