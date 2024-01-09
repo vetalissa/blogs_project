@@ -10,9 +10,18 @@ from posts.models import Post
 from users.models import User
 
 
-class HomeView(TitleMixin, TemplateView):
+# class HomeView(TitleMixin, TemplateView):
+#     title = 'Блог'
+#     template_name = 'posts/index.html'
+
+class HomeView(TitleMixin, ListView):
+    model = Post
+    queryset = Post.objects.all()
     title = 'Блог'
     template_name = 'posts/index.html'
+
+    def get_queryset(self):
+        return Post.objects.order_by('-date_create')[:3]
 
 
 class PostCreateView(TitleMixin, CreateView):
