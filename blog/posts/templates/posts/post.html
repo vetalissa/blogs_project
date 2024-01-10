@@ -6,10 +6,14 @@
       {% if user.id is object.user.id %}
       <div style="display: flex;justify-content: flex-end;">
          <div class="post-button">
-           <a href="update_post.html" class="button" style="background: #4f8532;"> Изменить </a>
+           <a href="{% url 'posts:post_update' object.id %}" class="button" style="background: #4f8532;">
+             Изменить
+           </a>
          </div>
          <div class="post-button">
-           <a href="update_post.html" class="button" style="background: #853232;"> Удалить </a>
+           <a href="{% url 'posts:post_deleted' object.user.id object.id %}" class="button" style="background: #853232;">
+             Удалить
+           </a>
          </div>
       </div>
       {% endif %}
@@ -19,7 +23,6 @@
       </a>
       <h4>{{ object.date_create }}</h4>
       <p>{{ object.description|linebreaks }}</p>
-
     </div>
 
     <div class="comment">

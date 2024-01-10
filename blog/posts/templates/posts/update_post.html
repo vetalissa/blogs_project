@@ -2,22 +2,26 @@
 
 {% block content %}
 <div class="okno">
-        <div class="create-posts">
-          <form class="create-post" action="index.html" method="post">
+    <div class="create-posts">
+        <form class="create-post" action="{% url 'posts:post_update' post.id %}" method="post">
+            {% csrf_token %}
             <div class="form-input">
-              <label for="">Заголовок</label>
-              <input type="text" name="" value="" class="form-title">
+                <label for="title_name">Заголовок</label>
+                <input type="text" name="title_name" value="{{ post.title_name }}" class="form-title">
             </div>
             <div class="form-input">
-              <textarea name="name" rows="15" cols="80" style="border: 1px solid black;">
-              </textarea>
+                <label for="description">Текст</label>
+                <textarea name="description" rows="15" cols="80" style="border: 1px solid black;">
+                    {{ post.description }}
+                </textarea>
             </div>
-
             <button type="submit" class="button" name="button">Сохранить</button>
-            <a href="#" class="button " >Удалить пост</a>
-          </form>
-
-        </div>
-
-      </div>
+        </form>
+        <div class="post-button">
+           <a href="{% url 'posts:post_deleted' post.user.id post.id %}" class="button" style="background: #853232;">
+               Удалить
+           </a>
+         </div>
+    </div>
+</div>
 {% endblock %}

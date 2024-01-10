@@ -11,13 +11,17 @@
        <h4>{{ post.date_create }}</h4>
        <p>{{ post.description|truncatechars:200 }}</p>
        <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
-       {% if user.id is post.user.id %}
+       {% if user.id is post.user.id and title != 'Все посты' %}
        <div style="display: flex;justify-content: flex-end;">
          <div class="post-button">
-           <a href="update_post.html" class="button" style="background: #4f8532;"> Изменить </a>
+           <a href="{% url 'posts:post_update' post.id %}" class="button" style="background: #4f8532;">
+             Изменить
+           </a>
          </div>
          <div class="post-button">
-           <a href="update_post.html" class="button" style="background: #853232;"> Удалить </a>
+           <a href="{% url 'posts:post_deleted' post.user.id post.id %}" class="button" style="background: #853232;">
+             Удалить
+           </a>
          </div>
        </div>
        {% endif%}
@@ -45,6 +49,5 @@
      </div>
      {% endif %}
   </div>
-
 </div>
 {% endblock %}
