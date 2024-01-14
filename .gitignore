@@ -1,5 +1,5 @@
 .idea/
-
+media/
 .flake8
 .env
 *.sqlite3
