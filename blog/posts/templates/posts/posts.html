@@ -1,9 +1,15 @@
 {% extends 'posts/base.html' %}
 {% block content %}
+{% load static %}
  <div class="okno">
    <div class="all-posts">
      <h1 class='center-text'>Все посты {{ tile_username }}</h1>
-
+     {% if tile_username %}
+     <div class="profile-img prof-img-big" style="margin: 0 auto;">
+        <img src="{% if image_user %}{{ image_user.url }}
+        {% else %}{% static 'img/user.png' %}{% endif %}" width="200" alt="">
+     </div>
+     {% endif %}
      {% for post in object_list %}
      <div class="post-card">
        <a href="{% url 'posts:post' post.id %}"><h2>{{ post.title_name }}</h2></a>
@@ -11,7 +17,7 @@
        <h4>{{ post.date_create }}</h4>
        <p>{{ post.description|truncatechars:200 }}</p>
        <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
-       {% if user.id is post.user.id and title != 'Все посты' %}
+       {% if user.id is post.user.id and tile_username %}
        <div style="display: flex;justify-content: flex-end;">
          <div class="post-button">
            <a href="{% url 'posts:post_update' post.id %}" class="button" style="background: #4f8532;">

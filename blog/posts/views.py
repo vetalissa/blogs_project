@@ -55,6 +55,7 @@ class PostUserListView(PostMixin):
         context = super(PostUserListView, self).get_context_data(**kwargs)
         context['tile_username'] = User.objects.filter(pk=self.kwargs['pk']).get().username
         context['title'] = f'Блог {User.objects.filter(pk=self.kwargs["pk"]).get().username}'
+        context['image_user'] = User.objects.filter(pk=self.kwargs['pk']).get().image
         return context
 
 
