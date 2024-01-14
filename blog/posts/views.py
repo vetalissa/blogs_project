@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
+from comments.views import comments
 from common.views import TitleMixin
 from posts.forms import PostForm
 from posts.models import Post
@@ -66,6 +67,7 @@ class PostView(TitleMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
         context['title'] = self.object.title_name
+        context['comment'] = comments(self.request, self.object)
         return context
 
 

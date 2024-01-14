@@ -25,6 +25,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('users/', include('users.urls', namespace='users')),
     path('posts/', include('posts.urls', namespace='posts')),
+    path('comments/', include('comments.urls', namespace='comments')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,29 @@
+{% load static %}
+  <div class="cards-comment">
+    {% for comment in comment %}
+    <div class="card-comment">
+      <div class="user-card">
+        <div class="profile-img prof-img-small">
+          <img src="{% if comment.user.image %}{{ comment.user.image.url }}
+          {% else %}{% static 'img/user.png' %}{% endif %}" width="30" height="30" alt="">
+        </div>
+        <h3>{{ comment.user.username }}</h3>
+      </div>
+      <h4>{{ comment.date_create }}</h4>
+      <p>{{ comment.comment_text }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="pagination" style="padding: 0px 0px 36px 0px;">
+    <ul>
+      <li><a href="#">Назад</a></li>
+      {% for page in comment.paginator.page_range %}
+      <li>
+        <a href="?page={{ page }}">{{page}}</a>
+      </li>
+      {% endfor %}
+      <li><a href="#">Вперед</a></li>
+    </ul>
+  </div>
+

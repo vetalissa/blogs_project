@@ -8,3 +8,6 @@ class Post(models.Model):
     description = models.TextField()
     date_create = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Заголовок: {self.title_name}'
