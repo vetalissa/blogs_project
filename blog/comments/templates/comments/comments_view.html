@@ -17,13 +17,12 @@
 
   <div class="pagination" style="padding: 0px 0px 36px 0px;">
     <ul>
-      <li><a href="#">Назад</a></li>
       {% for page in comment.paginator.page_range %}
       <li>
         <a href="?page={{ page }}">{{page}}</a>
       </li>
       {% endfor %}
-      <li><a href="#">Вперед</a></li>
     </ul>
   </div>
+
 
