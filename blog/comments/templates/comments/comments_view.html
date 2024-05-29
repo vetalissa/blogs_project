@@ -3,7 +3,7 @@
     {% for comment in comment %}
     <div class="card-comment">
       <div class="user-card">
-        <div class="profile-img prof-img-small">
+        <div class="profile-img prof-img-small" style="margin-right: 20px;">
           <img src="{% if comment.user.image %}{{ comment.user.image.url }}
           {% else %}{% static 'img/user.png' %}{% endif %}" width="30" height="30" alt="">
         </div>
