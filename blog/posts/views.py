@@ -28,36 +28,24 @@ class PostCreateView(TitleMixin, CreateView):
     title = 'Создать пост'
 
     def get_success_url(self):
-        return reverse_lazy('posts:post_user', args=(self.object.user.id,))
+        return reverse_lazy('posts:post_user', args=(self.object.author.id,))
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.author = self.request.user
         return super(PostCreateView, self).form_valid(form)
 
 
-class PostMixin(ListView):
+class PostListView(TitleMixin, ListView):
     model = Post
     queryset = Post.objects.all()
     template_name = 'posts/posts.html'
-    ordering = ('-date_create')
+    ordering = ('-date_create',)
     paginate_by = 3
 
-
-class PostListView(TitleMixin, PostMixin):
-    title = 'Все посты'
-
-
-class PostUserListView(PostMixin):
     def get_queryset(self):
-        queryset = super(PostUserListView, self).get_queryset()
-        return queryset.filter(user=self.kwargs['pk'])
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(PostUserListView, self).get_context_data(**kwargs)
-        context['tile_username'] = User.objects.filter(pk=self.kwargs['pk']).get().username
-        context['title'] = f'Блог {User.objects.filter(pk=self.kwargs["pk"]).get().username}'
-        context['image_user'] = User.objects.filter(pk=self.kwargs['pk']).get().image
-        return context
+        queryset = super(PostListView, self).get_queryset()
+        author_id = self.kwargs.get('pk')
+        return queryset.filter(author_id=author_id) if author_id else queryset
 
 
 class PostView(TitleMixin, DetailView):

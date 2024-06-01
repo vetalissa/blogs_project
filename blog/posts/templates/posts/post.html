@@ -1,29 +1,31 @@
 {% extends 'posts/base.html' %}
 {% load static %}
 {% block content %}
- <div class="okno">
-     <div class="post-card none-border">
-         {% if user.id is object.user.id %}
-         <div style="display: flex;justify-content: flex-end;">
-             <div class="post-button">
-                 <a href="{% url 'posts:post_update' object.id %}" class="button" style="background: #4f8532;">
-                     Изменить
-                 </a>
-             </div>
-             <div class="post-button">
-                 <a href="{% url 'posts:post_deleted' object.user.id object.id %}" class="button" style="background: #853232;">
-                     Удалить
-                 </a>
-             </div>
-         </div>
-         {% endif %}
-         <h2>{{ object.title_name }}</h2>
-         <a href="{% url 'posts:post_user' object.user.id %}" style="font-size: 20px;font-style: italic;margin: 10px 0px 10px 0px;">
-             {{ object.user.username }}
-         </a>
-         <h4>{{ object.date_create }}</h4>
-         <p>{{ object.description|linebreaks }}</p>
-     </div>
-   {% include 'comments/comments.html' %}
+<div class="okno">
+    <div class="post-card none-border">
+        {% if user.id is object.author.id %}
+        <div style="display: flex;justify-content: flex-end;">
+            <div class="post-button">
+                <a href="{% url 'posts:post_update' object.id %}" class="button" style="background: #4f8532;">
+                    Изменить
+                </a>
+            </div>
+            <div class="post-button">
+                <a href="{% url 'posts:post_deleted' object.author.id object.id %}" class="button"
+                   style="background: #853232;">
+                    Удалить
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        <h2>{{ object.title_name }}</h2>
+        <a href="{% url 'posts:post_user' object.author.id %}"
+           style="font-size: 20px;font-style: italic;margin: 10px 0px 10px 0px;">
+            {{ object.author.username }}
+        </a>
+        <h4>{{ object.date_create }}</h4>
+        <p>{{ object.description|linebreaks }}</p>
+    </div>
+    {% include 'comments/comments.html' %}
 </div>
 {% endblock %}

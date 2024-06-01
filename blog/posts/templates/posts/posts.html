@@ -1,59 +1,60 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 {% load static %}
- <div class="okno">
-   <div class="all-posts">
-     <h1 class='center-text'>Все посты {{ tile_username }}</h1>
-     {% if tile_username %}
-     <div class="profile-img prof-img-big" style="margin: 0 auto;">
-        <img src="{% if image_user %}{{ image_user.url }}
+<div class="okno">
+    <div class="all-posts">
+        <h1 class='center-text'>Все посты {{ tile_username }}</h1>
+        {% if tile_username %}
+        <div class="profile-img prof-img-big" style="margin: 0 auto;">
+            <img src="{% if image_user %}{{ image_user.url }}
         {% else %}{% static 'img/user.png' %}{% endif %}" width="200" alt="">
-     </div>
-     {% endif %}
-     {% for post in object_list %}
-     <div class="post-card">
-       <a href="{% url 'posts:post' post.id %}"><h2>{{ post.title_name }}</h2></a>
-       <h4><a href="{% url 'posts:post_user' post.user.id %}">{{ post.user.username }}</a></h4>
-       <h4>{{ post.date_create }}</h4>
-       <p>{{ post.description|truncatechars:200 }}</p>
-       <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
-       {% if user.id is post.user.id and tile_username %}
-       <div style="display: flex;justify-content: flex-end;">
-         <div class="post-button">
-           <a href="{% url 'posts:post_update' post.id %}" class="button" style="background: #4f8532;">
-             Изменить
-           </a>
-         </div>
-         <div class="post-button">
-           <a href="{% url 'posts:post_deleted' post.user.id post.id %}" class="button" style="background: #853232;">
-             Удалить
-           </a>
-         </div>
-       </div>
-       {% endif%}
-     </div>
-     {% endfor %}
-     {% if is_paginated %}
-     <div class="pagination">
-        <ul>
-          <li class="{% if not page_obj.has_previous %} disabled {% else %} # {% endif %}">
-            <a href="{% if page_obj.has_previous %}
+        </div>
+        {% endif %}
+        {% for post in object_list %}
+        <div class="post-card">
+            <a href="{% url 'posts:post' post.id %}"><h2>{{ post.title_name }}</h2></a>
+            <h4><a href="{% url 'posts:post_user' post.author.id %}">автор: {{ post.author.username }}</a></h4>
+            <h4>{{ post.date_create }}</h4>
+            <p>{{ post.description|truncatechars:200 }}</p>
+            <h3><a href="{% url 'posts:post' post.id %}">Читать дальше</a></h3>
+            {% if user.id is post.author.id and tile_username %}
+            <div style="display: flex;justify-content: flex-end;">
+                <div class="post-button">
+                    <a href="{% url 'posts:post_update' post.id %}" class="button" style="background: #4f8532;">
+                        Изменить
+                    </a>
+                </div>
+                <div class="post-button">
+                    <a href="{% url 'posts:post_deleted' post.author.id post.id %}" class="button"
+                       style="background: #853232;">
+                        Удалить
+                    </a>
+                </div>
+            </div>
+            {% endif%}
+        </div>
+        {% endfor %}
+        {% if is_paginated %}
+        <div class="pagination">
+            <ul>
+                <li class="{% if not page_obj.has_previous %} disabled {% else %} # {% endif %}">
+                    <a href="{% if page_obj.has_previous %}
                         ?page={{ page_obj.previous_page_number }}
                      {% else %} # {% endif %}">Назад</a>
-          </li>
-          {% for page in paginator.page_range %}
-          <li>
-            <a href="?page={{ page }}">{{page}}</a>
-          </li>
-          {% endfor %}
-          <li class="{% if not page_obj.has_next %} disabled {% else %} # {% endif%}">
-            <a href="{% if page_obj.has_next %}
+                </li>
+                {% for page in paginator.page_range %}
+                <li>
+                    <a href="?page={{ page }}">{{page}}</a>
+                </li>
+                {% endfor %}
+                <li class="{% if not page_obj.has_next %} disabled {% else %} # {% endif%}">
+                    <a href="{% if page_obj.has_next %}
                         ?page={{ page_obj.next_page_number }}
                      {% else %} # {% endif %}">Вперед</a>
-          </li>
-        </ul>
-     </div>
-     {% endif %}
-  </div>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
