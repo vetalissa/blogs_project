@@ -7,7 +7,7 @@
             {% csrf_token %}
             <div class="form-input">
                 <label for="title_name">Заголовок</label>
-                <input type="text" name="title_name" value="{{ post.title_name }}" class="form-title">
+                <input type="text" name="title_name" class="form-title" value="{{ post.title_name }}">
             </div>
             <div class="form-input">
                 <label for="description">Текст</label>
@@ -18,10 +18,10 @@
             <button type="submit" class="button" name="button">Сохранить</button>
         </form>
         <div class="post-button">
-           <a href="{% url 'posts:post_deleted' post.user.id post.id %}" class="button" style="background: #853232;">
-               Удалить
-           </a>
-         </div>
+            <a href="{% url 'posts:post_deleted' post.author.id post.id %}" class="button" style="background: #853232;">
+                Удалить
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
