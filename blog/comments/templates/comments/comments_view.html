@@ -1,28 +1,28 @@
 {% load static %}
-  <div class="cards-comment">
+<div class="cards-comment">
     {% for comment in comment %}
     <div class="card-comment">
-      <div class="user-card">
-        <div class="profile-img prof-img-small" style="margin-right: 20px;">
-          <img src="{% if comment.user.image %}{{ comment.user.image.url }}
+        <div class="user-card">
+            <div class="profile-img prof-img-small" style="margin-right: 20px;">
+                <img src="{% if comment.user.image %}{{ comment.user.image.url }}
           {% else %}{% static 'img/user.png' %}{% endif %}" width="30" height="30" alt="">
+            </div>
+            <h3>{{ comment.user.username }}</h3>
         </div>
-        <h3>{{ comment.user.username }}</h3>
-      </div>
-      <h4>{{ comment.date_create }}</h4>
-      <p>{{ comment.comment_text }}</p>
+        <h4>{{ comment.date_create }}</h4>
+        <p>{{ comment.comment_text }}</p>
     </div>
     {% endfor %}
-  </div>
+</div>
 
-  <div class="pagination" style="padding: 0px 0px 36px 0px;">
+<div class="pagination" style="padding: 0px 0px 36px 0px;">
     <ul>
-      {% for page in comment.paginator.page_range %}
-      <li>
-        <a href="?page={{ page }}">{{page}}</a>
-      </li>
-      {% endfor %}
+        {% for page in comment.paginator.page_range %}
+        <li>
+            <a href="?page={{ page }}">{{page}}</a>
+        </li>
+        {% endfor %}
     </ul>
-  </div>
+</div>
 
 
