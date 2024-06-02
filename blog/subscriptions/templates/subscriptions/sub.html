@@ -1,0 +1,34 @@
+
+
+<div style="display: flex;justify-content: center;margin: 30px;">
+    <div style="margin-right: 20px">
+        <h1 style="text-align: center;">{{ count_subscription }}</h1>
+        <a href=""><p>Подписки</p></a>
+
+    </div>
+    <div style="margin-left: 20px">
+        <h1 style="text-align: center;">{{ count_following }}</h1>
+        <a href=""><p>Подписчиков</p></a>
+    </div>
+
+</div>
+
+{% if user.is_authenticated and user.id != author_page.id%}
+<div style="display: flex;justify-content: center;margin: 30px;">
+    {% if check_sub %}
+    <div class="post-button">
+        <a href="{% url 'subscriptions:unfollow' user.id author_page.id %}" class="button"
+           style="background: #853232;">
+            Отписаться
+        </a>
+    </div>
+    {% else %}
+    <div class="post-button">
+        <a href="{% url 'subscriptions:follow' user.id author_page.id %}" class="button"
+           style="background: #4f8532;">
+            Подписаться
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endif %}

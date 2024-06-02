@@ -9,6 +9,7 @@ from comments.views import comments
 from common.views import TitleMixin
 from posts.forms import PostForm
 from posts.models import Post
+from subscriptions.models import Subscription
 from users.models import User
 
 
@@ -50,10 +51,23 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data()
+
         author_id = self.kwargs['pk'] if self.kwargs else ''
-        author_page = User.objects.get(id=author_id) if author_id else ''
-        context['author_page'] = author_page
-        context['title'] = f' Посты {author_page.username}' if author_page else 'Все посты'
+
+        if author_id:
+            author_page = User.objects.get(id=author_id)
+
+            context['author_page'] = author_page
+            context['count_following'] = Subscription.object.count_following(author_page)
+            context['count_subscription'] = Subscription.object.count_subscription(author_page)
+
+            if self.request.user.is_authenticated is True:
+                context['check_sub'] = Subscription.object.check_sub(self.request.user, author_page)
+
+            context['title'] = f' Посты {author_page.username}'
+        else:
+            context['title'] = 'Все посты'
+
         return context
 
 

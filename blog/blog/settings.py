@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
 #
 # import environ
 
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'comments',
-    # 'subscriptions',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [
