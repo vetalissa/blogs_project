@@ -10,7 +10,6 @@ urlpatterns = [
     path('update/<int:pk>/', PostUpdateView.as_view(), name='post_update'),
     path('posts', PostListView.as_view(), name='posts'),
     path('posts_user/<int:pk>/', PostListView.as_view(), name='post_user'),
-    path('page/<int:page>/', PostListView.as_view(), name='paginator'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post'),
     path('deleted/<int:user_id>/<int:post_id>/', post_deleted, name='post_deleted'),
 ]

@@ -7,3 +7,4 @@ from subscriptions.models import Subscription
 class SubAdmin(admin.ModelAdmin):
     list_display = ('user_sub', 'user_follow', 'created')
     fields = ('user_sub', 'user_follow', 'created')
+    readonly_fields = ('user_sub', 'user_follow', 'created')

@@ -1,24 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect
+from django.views.generic.list import ListView
 
 from subscriptions.models import Subscription
-from django.views.generic.list import ListView
-from common.views import TitleMixin
 from users.models import User
-
-
-@login_required
-def create_follow_sub(request, user_sub, user_follow):
-    Subscription.object.follow_sub(user_sub, user_follow)
-
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-@login_required
-def delete_unfollow_sub(request, user_sub, user_follow):
-    Subscription.object.unfollow_sub(user_sub, user_follow)
-
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 class SubMixinListView(ListView):
@@ -59,3 +44,17 @@ class FollowViewList(SubMixinListView):
         context['non_sub'] = f'На автора {author_page} никто не подписан...'
         context['author_page'] = author_page
         return context
+
+
+@login_required
+def create_follow_sub(request, user_sub, user_follow):
+    Subscription.object.follow_sub(user_sub, user_follow)
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def delete_unfollow_sub(request, user_sub, user_follow):
+    Subscription.object.unfollow_sub(user_sub, user_follow)
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

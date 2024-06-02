@@ -6,5 +6,5 @@ from users.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', )
-    inlines = (PostLineAdmin, )
+    list_display = ('username',)
+    inlines = (PostLineAdmin,)

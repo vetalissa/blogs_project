@@ -1,6 +1,7 @@
 from django.urls import path
 
-from subscriptions.views import create_follow_sub, delete_unfollow_sub, SubViewList, FollowViewList
+from subscriptions.views import (FollowViewList, SubViewList,
+                                 create_follow_sub, delete_unfollow_sub)
 
 app_name = 'subscriptions'
 

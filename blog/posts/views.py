@@ -60,11 +60,9 @@ class PostListView(ListView):
             context['author_page'] = author_page
             context['count_following'] = Subscription.object.count_following(author_page)
             context['count_subscription'] = Subscription.object.count_subscription(author_page)
-
+            context['title'] = f' Посты {author_page.username}'
             if self.request.user.is_authenticated is True:
                 context['check_sub'] = Subscription.object.check_sub(self.request.user, author_page)
-
-            context['title'] = f' Посты {author_page.username}'
         else:
             context['title'] = 'Все посты'
 
