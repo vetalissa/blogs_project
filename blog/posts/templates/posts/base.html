@@ -23,6 +23,7 @@
 
             {% if user.is_authenticated %}
             <a href="{% url 'posts:post_user' user.id %}">Мои посты</a>
+            <a href="{% url 'posts:post_user_sub' user.id %}">Мои подписки стена</a>
             <a href="{% url 'posts:create' %}">
               <img src="{% static 'img/icons/blog.png' %}" alt="Написать пост"  width="30" height="30">
             </a>

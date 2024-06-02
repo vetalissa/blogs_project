@@ -37,20 +37,23 @@ class PostCreateView(TitleMixin, CreateView):
         return super(PostCreateView, self).form_valid(form)
 
 
-class PostListView(ListView):
+class PostListView(TitleMixin, ListView):
     model = Post
     queryset = Post.objects.all()
     template_name = 'posts/posts.html'
     ordering = ('-date_create',)
     paginate_by = 3
+    title = 'Все посты'
 
+
+class PostUserListView(PostListView):
     def get_queryset(self):
-        queryset = super(PostListView, self).get_queryset()
+        queryset = super(PostUserListView, self).get_queryset()
         author_id = self.kwargs.get('pk')
         return queryset.filter(author_id=author_id) if author_id else queryset
 
     def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data()
+        context = super(PostUserListView, self).get_context_data()
 
         author_id = self.kwargs['pk'] if self.kwargs else ''
 
@@ -67,6 +70,16 @@ class PostListView(ListView):
             context['title'] = 'Все посты'
 
         return context
+
+
+class PostSubListView(PostListView):
+    title = 'Посты подписки'
+
+    def get_queryset(self):
+        queryset = super(PostSubListView, self).get_queryset()
+        author_id = self.kwargs.get('pk')
+        list_sub = [i.user_follow for i in Subscription.object.filter(user_sub_id=author_id)]
+        return [post for post in queryset if post.author in list_sub]
 
 
 class PostDetailView(TitleMixin, DetailView):
