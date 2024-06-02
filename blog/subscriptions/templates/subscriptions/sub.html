@@ -3,12 +3,12 @@
 <div style="display: flex;justify-content: center;margin: 30px;">
     <div style="margin-right: 20px">
         <h1 style="text-align: center;">{{ count_subscription }}</h1>
-        <a href=""><p>Подписки</p></a>
+        <a href="{% url 'subscriptions:sub_list' author_page.id %}"><p>Подписки</p></a>
 
     </div>
     <div style="margin-left: 20px">
         <h1 style="text-align: center;">{{ count_following }}</h1>
-        <a href=""><p>Подписчиков</p></a>
+        <a href="{% url 'subscriptions:follow_list' author_page.id %}"><p>Подписчиков</p></a>
     </div>
 
 </div>

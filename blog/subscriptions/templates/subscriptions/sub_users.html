@@ -1,1 +1,48 @@
 {% extends 'posts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="okno">
+    <div class="profile">
+        <div class="cards-comment">
+            <a href="{% url 'posts:post_user' author_page.id %}"><h3>На страницу автора</h3></a>
+            {% if object_list %}
+            {% for sub_user in object_list %}
+            <div class="card-comment">
+                <div class="user-card">
+                    <div class="profile-img prof-img-small" style="margin-right: 20px;">
+                        <img src="{% if sub_user.image %}{{ sub_user.image.url }}
+                        {% else %}{% static 'img/user.png' %}{% endif %}" width="50" height="40" alt="">
+                    </div>
+                    <a href="{% url 'posts:post_user' sub_user.id %}"><h3>{{ sub_user }}</h3></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h3> {{ non_sub }} </h3>
+            {% endif %}
+            {% if is_paginated %}
+            <div class="pagination">
+                <ul>
+                    <li class="{% if not page_obj.has_previous %} disabled {% else %} # {% endif %}">
+                        <a href="{% if page_obj.has_previous %}
+                        ?page={{ page_obj.previous_page_number }}
+                     {% else %} # {% endif %}">Назад</a>
+                    </li>
+                    {% for page in paginator.page_range %}
+                    <li>
+                        <a href="?page={{ page }}">{{page}}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="{% if not page_obj.has_next %} disabled {% else %} # {% endif%}">
+                        <a href="{% if page_obj.has_next %}
+                        ?page={{ page_obj.next_page_number }}
+                     {% else %} # {% endif %}">Вперед</a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
