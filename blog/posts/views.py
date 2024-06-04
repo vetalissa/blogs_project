@@ -98,6 +98,12 @@ class PostUpdateView(UpdateView):
     template_name = 'posts/update_post.html'
     form_class = PostForm
 
+    def get(self, request, *args, **kwargs):
+        if check_user(request, kwargs['pk']) is False:
+            return redirect('home')
+        else:
+            return super(PostUpdateView, self).get(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse_lazy('posts:post', args=(self.object.id,))
 
@@ -109,7 +115,16 @@ class PostUpdateView(UpdateView):
 
 @login_required
 def post_deleted(request, user_id, post_id):
-    post = Post.objects.get(id=post_id)
-    post.delete()
+    post = check_user(request, post_id)
+    if post is False:
+        return redirect('home')
+    else:
+        post.delete()
+        return redirect(reverse_lazy('posts:post_user', args=(user_id,)))
 
-    return redirect(reverse_lazy('posts:post_user', args=(user_id,)))
+
+def check_user(request, post_id):
+    post = Post.objects.filter(id=post_id)
+    if post.exists() and request.user == post.first().author:
+        return post.first()
+    return False
