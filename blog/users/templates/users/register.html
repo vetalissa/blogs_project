@@ -2,52 +2,55 @@
 
 {% block content %}
 <div class="okno">
-  <div class="forma-login">
-    <h2>Регистрация</h2>
-    {% if messages or form.non_field_errors %}
-    <div class="errors">
-      <h3>Ошибка:</h3>
-      {% if messages %}
-        {% for message in messages %}
-          <p>{{ message }}</p>
-        {% endfor %}
-      {% else %}
-        <p>{{ form.non_field_errors }}</p>
-      {% endif %}
-    </div>
-    {% endif %}
-    <form class="" action="{% url 'users:register' %}" method="post">
-      {% csrf_token %}
-      <div class="form-input">
-        <label for="{{ form.first_name.id_for_label }}">Имя</label>
-        {{ form.first_name }}
-      </div>
-      <div class="form-input">
-        <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
-        {{ form.last_name }}
-      </div>
-      <div class="form-input">
-        <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
-        {{ form.username }}
-      </div>
-      <div class="form-input">
-        <label for="{{ form.email.id_for_label }}">Почта</label>
-        {{ form.email }}
-      </div>
-      <div class="form-input">
-        <label for="{{ form.password1.id_for_label }}">Пароль</label>
-        {{ form.password1 }}
-      </div>
-      <div class="form-input">
-        <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
-        {{ form.password2 }}
-      </div>
-      <button type="submit" name="button" class="button">Регистрация</button>
-    </form>
+    <div class="forma-login">
+        <h2>Регистрация</h2>
+        {% if form.errors %}
+        <div class="errors">
+            <h3 style="font-size:14px;">Ошибка:</h3>
+            {% for field in form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <p>{{ error|escape }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+            <p>{{ form.non_field_errors }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        <form class="" action="{% url 'users:register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-input">
+                <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-input">
+                <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-input">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                {{ form.username }}
+            </div>
+            <div class="form-input">
+                <label for="{{ form.email.id_for_label }}">Почта</label>
+                {{ form.email }}
+            </div>
+            <div class="form-input">
+                <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                {{ form.password1 }}
+            </div>
+            <div class="form-input">
+                <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+                {{ form.password2 }}
+            </div>
+            <button type="submit" name="button" class="button">Регистрация</button>
+        </form>
 
-    <p>Есть аккаунта?
-    <a href="{% url 'users:login' %}"> Вход </a>
-    </p>
-  </div>
+        <p>Есть аккаунта?
+            <a href="{% url 'users:login' %}"> Вход </a>
+        </p>
+    </div>
 </div>
 {% endblock %}
