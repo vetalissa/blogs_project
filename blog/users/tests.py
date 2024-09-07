@@ -58,6 +58,7 @@ class UserLoginViewTestCase(TestCase):
 
     def test_user_login_get(self):
         response = self.client.get(self.login_url)
+
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.context_data['title'], 'Авторизация')
         self.assertTemplateUsed(response, 'users/login.html')
@@ -69,6 +70,7 @@ class UserLoginViewTestCase(TestCase):
             'password': 'testpassword'
         }
         response = self.client.post(self.login_url, data)
+
         self.assertRedirects(response, reverse('home'))
 
     def test_user_login_post_error(self):
@@ -76,7 +78,6 @@ class UserLoginViewTestCase(TestCase):
             'username': 'testuser',
             'password': 'wrongpassword'
         }
-
         response = self.client.post(self.login_url, data)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
