@@ -1,0 +1,26 @@
+{% load static %}
+<div style="display: flex;align-items: center;justify-content: center;">
+    {% if like_user %}
+
+
+    <a href="{% url 'likes:click_for_like' user.id object.id %}">
+        <img src="{% static 'img/icons/heart.png' %}" alt="" width="30" height="30">
+        {{count_like}}
+    </a>
+    <h5>Убрать лайк</h5>
+    {% else %}
+    <a href="{% url 'likes:click_for_like' user.id object.id %}">
+        <img src="{% static 'img/icons/not-heart.png' %}" alt="" width="30" height="30">
+        {{count_like}}
+    </a>
+    <h5>Поставить лайк </h5>
+    {% endif %}
+
+
+</div>
+
+
+
+
+
+

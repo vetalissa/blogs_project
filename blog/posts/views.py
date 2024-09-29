@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 
 from comments.views import comments
 from common.views import TitleMixin
+from likes.models import Like, UserLike
 from posts.forms import PostForm
 from posts.models import Post
 from subscriptions.models import Subscription
@@ -88,8 +89,16 @@ class PostDetailView(TitleMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
+
         context['title'] = self.object.title_name
         context['comment'] = comments(self.request, self.object)
+
+        like_post = Like.objects.filter(post_id=self.object)
+        context['count_like'] = like_post.get(post=self.object).count_like if like_post.exists() else 0
+
+        like_user = UserLike.objects.filter(user_id=self.request.user.id, post=self.object)
+        context['like_user'] = True if like_user.exists() else False
+
         return context
 
 

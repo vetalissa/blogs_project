@@ -12,7 +12,9 @@ urlpatterns = [
     path('posts/', include('posts.urls', namespace='posts')),
     path('comments/', include('comments.urls', namespace='comments')),
     path('subscriptions/', include('subscriptions.urls', namespace='subscriptions')),
+    path('likes/', include('likes.urls', namespace='likes')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
