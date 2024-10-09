@@ -13,6 +13,7 @@ urlpatterns = [
     path('comments/', include('comments.urls', namespace='comments')),
     path('subscriptions/', include('subscriptions.urls', namespace='subscriptions')),
     path('likes/', include('likes.urls', namespace='likes')),
+    path('api/', include('api.urls', namespace='api')),
 ]
 
 if settings.DEBUG:

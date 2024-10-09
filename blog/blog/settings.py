@@ -1,9 +1,11 @@
 from pathlib import Path
 
+from django.core.management.utils import get_random_secret_key
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^jarse7(%^yx$3z4wr935*h6oe_)ue_i7&26h1=vspt5d3v#t)'
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,6 +27,7 @@ INSTALLED_APPS = [
     'comments',
     'subscriptions',
     'likes',
+    'api',
 ]
 
 MIDDLEWARE = [
