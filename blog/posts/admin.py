@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     fields = ('title_name', 'description', 'date_create', 'author')
     readonly_fields = ('date_create', 'author')
     inlines = (CommentLineAdmin, LikePostLineAdmin)
+    list_filter = ('author', )
 
 
 class PostLineAdmin(admin.TabularInline):
