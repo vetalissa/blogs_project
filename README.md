@@ -74,3 +74,11 @@ http://127.0.0.1:8000/api/post/?author=username
 http://127.0.0.1:8000/api-token-auth/
 ```
 
+## Изображения:
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/1.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/2.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/3.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/4.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/5.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/6.png)
+![alt text](https://raw.githubusercontent.com/vetalissa/blogs_project/f8d3e4f37fb9df9e91b8c5abe2946fb8b17bd98b/7.png)
